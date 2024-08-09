@@ -1,5 +1,7 @@
-import { validatePartialUsuario, validateUsuario } from "../schemas/usuarios";
-import { UsuarioModel } from "../models/usuarios";
+import {
+  validatePartialUsuario,
+  validateUsuario,
+} from "../schemas/usuarios.js";
 
 export class UsuarioController {
   constructor({ usuarioModel }) {
@@ -7,20 +9,20 @@ export class UsuarioController {
   }
 
   getAll = async (req, res) => {
-    const usuarios = await UsuarioModel.getAll();
+    const usuarios = await this.usuarioModel.getAll();
     res.json(usuarios);
   };
 
   getById = async (req, res) => {
     const { id } = req.params;
-    const usuario = await UsuarioModel.getById({ id });
+    const usuario = await this.usuarioModel.getById({ id });
     if (usuario) return res.json(usuario);
     res.status(404).json({ message: "Usuario not found" });
   };
 
   getByEmail = async (req, res) => {
     const { email } = req.params;
-    const usuario = await UsuarioModel.getByEmail({ email });
+    const usuario = await this.usuarioModel.getByEmail({ email });
     if (usuario) return res.json(usuario);
     res.status(404).json({ message: "Usuario not found" });
   };
@@ -32,7 +34,7 @@ export class UsuarioController {
       // 400 Bad Request ó 422 Unprocessable Entity
       return res.status(400).json({ error: JSON.parse(result.error.message) });
 
-    const usuario = await UsuarioModel.create({ input: result.data });
+    const usuario = await this.usuarioModel.create({ input: result.data });
 
     res.status(201).json(usuario); // Actualizar la caché del cliente
   };
@@ -40,17 +42,43 @@ export class UsuarioController {
   delete = async (req, res) => {
     const { id } = req.params;
 
-    const result = await UsuarioModel.delete({ id });
+    const result = await this.usuarioModel.delete({ id });
 
-    if (result === false)
-      return res.status(404).json({ error: "Movie not found" });
-
-    return res.json({
-      message: "Movie deleted",
-    });
+    return res.json({ result });
   };
 
-  cambiarDatosPrincipales = async (req, res) => {};
+  cambiarDatosPrincipales = async (req, res) => {
+    const result = validatePartialUsuario(req.body);
 
-  cambiarDatosPrincipales = async (req, res) => {};
+    if (!result.success)
+      return res.status(400).json({ error: JSON.parse(result.error.message) });
+
+    const { correo, nombreUsuario, nombre, apellidos, imgPerfil } = result;
+
+    const usuario = await this.usuarioModel.cambiarDatosPrincipales({
+      correo,
+      nombreUsuario,
+      nombre,
+      apellidos,
+      imgPerfil,
+    });
+
+    res.status(201).json(usuario);
+  };
+
+  cambiarTemaSeleccionado = async (req, res) => {
+    const result = validatePartialUsuario(req.body);
+
+    if (!result.success)
+      return res.status(400).json({ error: JSON.parse(result.error.message) });
+
+    const { correo, temaSeleccionado } = result;
+
+    const usuario = await this.usuarioModel.cambiarTemaSeleccionado({
+      correo,
+      temaSeleccionado,
+    });
+
+    res.status(201).json(usuario);
+  };
 }

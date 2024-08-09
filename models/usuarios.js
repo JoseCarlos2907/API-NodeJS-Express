@@ -1,18 +1,20 @@
 import mysql from "mysql2/promise";
-import { configBD } from "../configBD";
+import { configBD } from "../configBD.js";
 
 const connection = await mysql.createConnection(configBD);
 
 export class UsuarioModel {
   static async getAll() {
-    const { usuarios } = await connection.query("SELECT * FROM usuarios;");
+    const [usuarios] = await connection.query(
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios;"
+    );
 
     return usuarios;
   }
 
   static async getById({ id }) {
     const [usuario] = await connection.query(
-      "SELECT * FROM usuarios WHERE idUsuario = ?;",
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE idUsuario = ?;",
       [id]
     );
 
@@ -21,7 +23,7 @@ export class UsuarioModel {
 
   static async getByEmail({ email }) {
     const [usuario] = await connection.query(
-      "SELECT * FROM usuarios WHERE email = ?;",
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE email = ?;",
       [email]
     );
 
@@ -60,12 +62,12 @@ export class UsuarioModel {
       // sendLog(e)
     }
 
-    const [usuario] = await connection.query(
-      "SELECT * FROM usuarios WHERE email = ?;",
+    const [usuarioFinal] = await connection.query(
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE email = ?;",
       [email]
     );
 
-    return usuario;
+    return usuarioFinal;
   }
 
   static async delete({ id }) {
@@ -87,21 +89,21 @@ export class UsuarioModel {
     );
 
     const [usuario] = await connection.query(
-      "SELECT * FROM usuarios WHERE email = ?;",
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE email = ?;",
       [email]
     );
 
     return usuario;
   }
 
-  static async cambiarDatosPrincipales({ correo, temaSeleccionado }) {
+  static async cambiarTemaSeleccionado({ correo, temaSeleccionado }) {
     await connection.query(
       "UPDATE usuarios SET TemaSeleccionado = ? WHERE Correo = ?;",
       [temaSeleccionado, correo]
     );
 
     const [usuario] = await connection.query(
-      "SELECT * FROM usuarios WHERE email = ?;",
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE email = ?;",
       [email]
     );
 

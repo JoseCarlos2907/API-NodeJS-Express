@@ -1,5 +1,7 @@
 import express, { json } from "express";
 import { corsMiddleware } from "./middlewares/cors.js";
+import { createUsuarioRouter } from "./routes/usuarios.js";
+import { UsuarioModel } from "./models/usuarios.js";
 
 const app = express();
 
@@ -8,11 +10,12 @@ app.use(json());
 app.use(corsMiddleware());
 
 // Aqui van los app.use() de los routers de los modelos, de momento solo el de usuarios para probarlo
+app.use("/usuarios", createUsuarioRouter({ usuarioModel: UsuarioModel }));
 
 const PORT = process.env.PORT ?? 3000;
 
 app.listen(PORT, () => {
-  console.log(`server escuchando en puerto http://localhost:${PORT}`);
+  console.log(`Server escuchando en el puerto http://localhost:${PORT}`);
 });
 
 app.use((req, res) => {
