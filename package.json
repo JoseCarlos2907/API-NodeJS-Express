@@ -1,0 +1,31 @@
+{
+  "name": "api-nodejs-express",
+  "version": "1.0.0",
+  "description": "Esta es la API de mi proyecto de fin de grado pasada a NodeJS con Express",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseCarlos2907/API-NodeJS-Express.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "Express",
+    "PortalGP"
+  ],
+  "author": "José Carlos Pérez González",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseCarlos2907/API-NodeJS-Express/issues"
+  },
+  "homepage": "https://github.com/JoseCarlos2907/API-NodeJS-Express#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0",
+    "zod": "^3.23.8"
+  }
+}
