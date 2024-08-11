@@ -10,7 +10,8 @@ export const createUsuarioRouter = ({ usuarioModel }) => {
 
   usuariosRouter.get("/", usuarioController.getAll);
   usuariosRouter.get("/:id", usuarioController.getById);
-  usuariosRouter.post("/", usuarioController.getByEmail);
+  usuariosRouter.post("/gbe", usuarioController.getByEmail);
+  usuariosRouter.post("/", usuarioController.registrar);
   usuariosRouter.delete("/:id", usuarioController.delete);
   usuariosRouter.patch(
     "/cambiar-datos-principales",

@@ -21,10 +21,10 @@ export class UsuarioModel {
     return usuario;
   }
 
-  static async getByEmail({ email }) {
+  static async getByEmail({ correo }) {
     const [usuario] = await connection.query(
-      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE email = ?;",
-      [email]
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE correo = ?;",
+      [correo]
     );
 
     return usuario;
@@ -32,6 +32,7 @@ export class UsuarioModel {
 
   static async registrar({ usuario }) {
     const {
+      imgPerfil,
       nombre,
       apellidos,
       fechaNac,
@@ -42,8 +43,9 @@ export class UsuarioModel {
     } = usuario;
     try {
       await connection.query(
-        "INSERT INTO usuarios (Nombre, Apellidos, FechaNac, NombreUsuario, Correo, Rol, TemaSeleccionado, idPais) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+        "INSERT INTO usuarios (ImgPerfil, Nombre, Apellidos, FechaNac, NombreUsuario, Correo, Rol, TemaSeleccionado, idPais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
         [
+          imgPerfil,
           nombre,
           apellidos,
           fechaNac,
@@ -63,8 +65,8 @@ export class UsuarioModel {
     }
 
     const [usuarioFinal] = await connection.query(
-      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE email = ?;",
-      [email]
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE correo = ?;",
+      [correo]
     );
 
     return usuarioFinal;
@@ -89,8 +91,8 @@ export class UsuarioModel {
     );
 
     const [usuario] = await connection.query(
-      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE email = ?;",
-      [email]
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE correo = ?;",
+      [correo]
     );
 
     return usuario;
@@ -103,8 +105,8 @@ export class UsuarioModel {
     );
 
     const [usuario] = await connection.query(
-      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE email = ?;",
-      [email]
+      "SELECT idUsuario, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellidos AS apellidos, FechaNac AS fechaNac, NombreUsuario AS nombreUsuario, Correo AS correo, Rol AS rol, TemaSeleccionado AS temaSeleccionado, idPais FROM usuarios WHERE correo = ?;",
+      [correo]
     );
 
     return usuario;

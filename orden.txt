@@ -1,0 +1,14 @@
+Primero hay que hacer el schema de cada entidad
+(TODOS HECHOS)
+
+Una vez teniendo el schema hacemos el modelo con la conexión de BD
+(usuario)
+
+Después de esto hacemos el controller
+(usuario)
+
+Cuando tengamos el controller completo, hacemos el routes de la entidad
+(usuario)
+
+Y finalmente hacemos un app.use() con el routes hecho anteriormente
+(usuario)

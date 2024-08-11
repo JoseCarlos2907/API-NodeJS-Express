@@ -7,7 +7,7 @@ const usuarioSchema = z.object({
   fechaNac: z.string(),
   nombreUsuario: z.string(),
   correo: z.string().email(),
-  rol: z.array(z.enum(["usuario", "admin"])),
+  rol: z.enum(["usuario", "admin"]),
   temaSeleccionado: z.number().min(0).max(5),
 });
 

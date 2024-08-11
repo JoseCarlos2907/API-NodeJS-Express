@@ -1,0 +1,47 @@
+### Obtener todos los usuarios
+GET http://localhost:3000/usuarios
+
+
+### Obtener usuario por id
+GET http://localhost:3000/usuarios/75
+
+
+### Obtener usuario por email
+POST http://localhost:3000/usuarios/gbe
+{
+  "correo": "pruebaNodeJS@gmail.com"
+}
+
+
+### Registrar un nuevo usuario
+POST http://localhost:3000/usuarios
+{
+  "imgPerfil": "imagenPrueba",
+  "nombre": "pruebaNodeJS_1",
+  "apellidos": "prueba",
+  "fechaNac": "29/07/2004",
+  "nombreUsuario": "pruebaNodeJS_29",
+  "correo": "pruebaNodeJS@gmail.com",
+  "rol": "usuario",
+  "temaSeleccionado": 0,
+  "idPais": 3
+}
+
+
+### Cambiar los datos principales del usuario
+PATCH http://localhost:3000/cambiar-datos-principales
+{
+  "imgPerfil": "imagenPrueba",
+  "nombre": "pruebaNodeJS",
+  "apellidos": "prueba",
+  "nombreUsuario": "pruebaNodeJS_29",
+  "correo": "pruebaNodeJS@gmail.com"
+}
+
+
+### Cambiar el tema seleccionado del usuario
+PATCH http://localhost:3000/cambiar-tema-seleccionado
+{
+  "correo": "pruebaNodeJS@gmail.com",
+  "temaSeleccionado": 1
+}
