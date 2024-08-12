@@ -22,5 +22,20 @@ export const createUsuarioRouter = ({ usuarioModel }) => {
     usuarioController.cambiarTemaSeleccionado
   );
 
+  usuariosRouter.get("/:id/pais", usuarioController.getPaisUsuario);
+  usuariosRouter.get("/:id/seguidores", usuarioController.getSeguidoresUsuario);
+  usuariosRouter.get("/:id/seguidos", usuarioController.getSeguidosUsuario);
+  usuariosRouter.get(
+    "/:id/pilotos-seguidos",
+    usuarioController.getPilotosSeguidosUsuario
+  );
+  usuariosRouter.get(
+    "/:id/comentarios",
+    usuarioController.getComentariosUsuario
+  );
+  usuariosRouter.post("/spr", usuarioController.seguirPilotosRegistro);
+  usuariosRouter.post("/seguir", usuarioController.seguirUsuario);
+  usuariosRouter.post("/no-seguir", usuarioController.dejarDeSeguirUsuario);
+
   return usuariosRouter;
 };

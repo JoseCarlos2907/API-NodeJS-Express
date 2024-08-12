@@ -10,5 +10,5 @@ Después de esto hacemos el controller
 Cuando tengamos el controller completo, hacemos el routes de la entidad
 (usuario)
 
-Y finalmente hacemos un app.use() con el routes hecho anteriormente
+Y finalmente hacemos un app.use() con el routes hecho anteriormente en el app.js
 (usuario)

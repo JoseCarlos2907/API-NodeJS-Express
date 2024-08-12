@@ -45,3 +45,45 @@ PATCH http://localhost:3000/cambiar-tema-seleccionado
   "correo": "pruebaNodeJS@gmail.com",
   "temaSeleccionado": 1
 }
+
+
+### Obtener el país de un usuario
+GET http://localhost:3000/usuarios/1/pais
+
+
+### Obtener los seguidores de un usuario
+GET http://localhost:3000/usuarios/1/seguidores
+
+
+### Obtener los seguidos de un usuario
+GET http://localhost:3000/usuarios/1/seguidos
+
+
+### Obtener los pilotos seguidos de un usuario
+GET http://localhost:3000/usuarios/70/pilotos-seguidos
+
+
+### Obtener los comentarios de un usuario
+GET http://localhost:3000/usuarios/1/comentarios
+
+
+### Seguir pilotos en el registro
+POST http://localhost:3000/usuarios/spr
+{
+  "correo": "pruebaNodeJS@gmail.com",
+  "pilotos": "0,1,2,3,5,7,9"
+}
+
+### Seguir un usuario
+POST http://localhost:3000/usuarios/seguir
+{
+  "idUsuario1": 70,
+  "idUsuario2": 1
+}
+
+### Dejar de seguir un usuario
+POST http://localhost:3000/usuarios/no-seguir
+{
+  "idUsuario1": 70,
+  "idUsuario2": 1
+}

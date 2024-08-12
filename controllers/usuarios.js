@@ -17,14 +17,14 @@ export class UsuarioController {
     const { id } = req.params;
     const usuario = await this.usuarioModel.getById({ id });
     if (usuario) return res.json(usuario);
-    res.status(404).json({ message: "Usuario not found" });
+    res.status(404).json({ msg: "Usuario not found" });
   };
 
   getByEmail = async (req, res) => {
     const { correo } = req.body;
     const usuario = await this.usuarioModel.getByEmail({ correo });
     if (usuario) return res.json(usuario);
-    res.status(404).json({ message: "Usuario not found" });
+    res.status(404).json({ msg: "Usuario not found" });
   };
 
   registrar = async (req, res) => {
@@ -79,5 +79,88 @@ export class UsuarioController {
     });
 
     res.status(201).json(usuario);
+  };
+
+  getPaisUsuario = async (req, res) => {
+    const { id } = req.params;
+    const pais = await this.usuarioModel.getPaisUsuario({ id });
+
+    if (pais) return res.json(pais);
+    return res.status(401).json({ msg: "Pais no encontrado" });
+  };
+
+  getSeguidoresUsuario = async (req, res) => {
+    const { id } = req.params;
+    const seguidores = await this.usuarioModel.getSeguidoresUsuario({ id });
+
+    if (typeof seguidores === "string")
+      return res.status(401).json({ msg: seguidores });
+
+    return res.json(seguidores);
+  };
+
+  getSeguidosUsuario = async (req, res) => {
+    const { id } = req.params;
+    const seguidos = await this.usuarioModel.getSeguidosUsuario({ id });
+
+    if (typeof seguidos === "string")
+      return res.status(401).json({ msg: seguidos });
+
+    return res.json(seguidos);
+  };
+
+  getPilotosSeguidosUsuario = async (req, res) => {
+    const { id } = req.params;
+    const pilotosSeguidos = await this.usuarioModel.getPilotosSeguidosUsuario({
+      id,
+    });
+
+    if (typeof pilotosSeguidos === "string")
+      return res.status(401).json({ msg: pilotosSeguidos });
+
+    return res.json(pilotosSeguidos);
+  };
+
+  getComentariosUsuario = async (req, res) => {
+    const { id } = req.params;
+    const pilotosSeguidos = await this.usuarioModel.getComentariosUsuario({
+      id,
+    });
+
+    if (typeof pilotosSeguidos === "string")
+      return res.status(401).json({ msg: pilotosSeguidos });
+
+    return res.json(pilotosSeguidos);
+  };
+
+  seguirPilotosRegistro = async (req, res) => {
+    const { correo, pilotos } = req.body;
+    const idPilotos = pilotos.split(",").map((piloto) => parseInt(piloto));
+
+    const msg = await this.usuarioModel.seguirPilotosRegistro({
+      correo,
+      pilotos: idPilotos,
+    });
+
+    return res.json({ msg: msg });
+  };
+
+  seguirUsuario = async (req, res) => {
+    const { idUsuario1, idUsuario2 } = req.body;
+
+    const msg = await this.usuarioModel.seguirUsuario({
+      idUsuario1,
+      idUsuario2,
+    });
+    return res.json({ msg: msg });
+  };
+
+  dejarDeSeguirUsuario = async (req, res) => {
+    const { idUsuario1, idUsuario2 } = req.body;
+    const msg = await this.usuarioModel.dejarDeSeguirUsuario({
+      idUsuario1,
+      idUsuario2,
+    });
+    return res.json({ msg: msg });
   };
 }
