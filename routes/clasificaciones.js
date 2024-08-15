@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ClasificacionController } from "../controllers/clasificaciones";
+import { ClasificacionController } from "../controllers/clasificaciones.js";
 
 export const createClasificacionRouter = ({ clasificacionModel }) => {
   const clasificacionesRouter = Router();

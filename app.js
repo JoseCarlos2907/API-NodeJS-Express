@@ -6,12 +6,16 @@ import { createUsuarioRouter } from "./routes/usuarios.js";
 import { createCarreraRouter } from "./routes/carreras.js";
 import { createCircuitoRouter } from "./routes/circuitos.js";
 import { createClasificacionRouter } from "./routes/clasificaciones.js";
+import { createCocheRouter } from "./routes/coches.js";
+import { createEscuderiaRouter } from "./routes/escuderias.js";
 
 // Models
 import { UsuarioModel } from "./models/usuarios.js";
 import { CarreraModel } from "./models/carreras.js";
 import { CircuitoModel } from "./models/circuitos.js";
 import { ClasificacionModel } from "./models/clasificaciones.js";
+import { CocheModel } from "./models/coches.js";
+import { CocheModel } from "./models/escuderias.js";
 
 const app = express();
 
@@ -25,6 +29,11 @@ app.use("/circuitos", createCircuitoRouter({ circuitoModel: CircuitoModel }));
 app.use(
   "/clasificaciones",
   createClasificacionRouter({ clasificacionModel: ClasificacionModel })
+);
+app.use("/coches", createCocheRouter({ cocheModel: CocheModel }));
+app.use(
+  "/escuderias",
+  createEscuderiaRouter({ escuderiaModel: EscuderiaModel })
 );
 app.use("/usuarios", createUsuarioRouter({ usuarioModel: UsuarioModel }));
 
