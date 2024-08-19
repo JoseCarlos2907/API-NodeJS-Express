@@ -1,5 +1,5 @@
 import mysql from "mysql2/promise";
-import { configBD } from "../configBD";
+import { configBD } from "../configBD.js";
 
 const connection = await mysql.createConnection(configBD);
 
@@ -20,7 +20,7 @@ export class EscuderiaModel {
 
     return escuderia;
   }
-  
+
   static async getPais({ id }) {
     const [pais] = await connection.query(
       "SELECT idPais, Nombre AS nombre, CountryCode AS countryCode FROM Paises WHERE IdPais = (SELECT IdPais FROM Escuderias WHERE IdEscuderia = ?);",

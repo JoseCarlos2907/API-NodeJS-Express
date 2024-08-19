@@ -17,10 +17,10 @@ POST http://localhost:3000/usuarios/gbe
 POST http://localhost:3000/usuarios
 {
   "imgPerfil": "imagenPrueba",
-  "nombre": "pruebaNodeJS_1",
+  "nombre": "pruebaNodeJS_2",
   "apellidos": "prueba",
   "fechaNac": "29/07/2004",
-  "nombreUsuario": "pruebaNodeJS_29",
+  "nombreUsuario": "pruebaNodeJS_28",
   "correo": "pruebaNodeJS@gmail.com",
   "rol": "usuario",
   "temaSeleccionado": 0,

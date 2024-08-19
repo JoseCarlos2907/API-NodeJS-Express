@@ -8,6 +8,7 @@ import { createCircuitoRouter } from "./routes/circuitos.js";
 import { createClasificacionRouter } from "./routes/clasificaciones.js";
 import { createCocheRouter } from "./routes/coches.js";
 import { createEscuderiaRouter } from "./routes/escuderias.js";
+import { createLibreRouter } from "./routes/libres.js";
 
 // Models
 import { UsuarioModel } from "./models/usuarios.js";
@@ -15,7 +16,8 @@ import { CarreraModel } from "./models/carreras.js";
 import { CircuitoModel } from "./models/circuitos.js";
 import { ClasificacionModel } from "./models/clasificaciones.js";
 import { CocheModel } from "./models/coches.js";
-import { CocheModel } from "./models/escuderias.js";
+import { EscuderiaModel } from "./models/escuderias.js";
+import { LibreModel } from "./models/libres.js";
 
 const app = express();
 
@@ -35,6 +37,7 @@ app.use(
   "/escuderias",
   createEscuderiaRouter({ escuderiaModel: EscuderiaModel })
 );
+app.use("/libres", createLibreRouter({ libreModel: LibreModel }));
 app.use("/usuarios", createUsuarioRouter({ usuarioModel: UsuarioModel }));
 
 const PORT = process.env.PORT ?? 3000;
