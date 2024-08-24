@@ -9,6 +9,8 @@ import { createClasificacionRouter } from "./routes/clasificaciones.js";
 import { createCocheRouter } from "./routes/coches.js";
 import { createEscuderiaRouter } from "./routes/escuderias.js";
 import { createLibreRouter } from "./routes/libres.js";
+import { createPaisRouter } from "./routes/paises.js";
+import { createRCarrerasRouter } from "./routes/resultadosCarreras.js";
 
 // Models
 import { UsuarioModel } from "./models/usuarios.js";
@@ -18,6 +20,8 @@ import { ClasificacionModel } from "./models/clasificaciones.js";
 import { CocheModel } from "./models/coches.js";
 import { EscuderiaModel } from "./models/escuderias.js";
 import { LibreModel } from "./models/libres.js";
+import { PaisModel } from "./models/paises.js";
+import { ResultadoCarreraModel } from "./models/ResultadosCarreras.js";
 
 const app = express();
 
@@ -38,6 +42,11 @@ app.use(
   createEscuderiaRouter({ escuderiaModel: EscuderiaModel })
 );
 app.use("/libres", createLibreRouter({ libreModel: LibreModel }));
+app.use("/paises", createPaisRouter({ paisModel: PaisModel }));
+app.use(
+  "/resultados-carreras",
+  createRCarrerasRouter({ resultadoCarreraModel: ResultadoCarreraModel })
+);
 app.use("/usuarios", createUsuarioRouter({ usuarioModel: UsuarioModel }));
 
 const PORT = process.env.PORT ?? 3000;
