@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ResultadoCarreraController } from "../controllers/resultadosCarreras";
+import { ResultadoCarreraController } from "../controllers/resultadosCarreras.js";
 
 export const createRCarrerasRouter = ({ resultadoCarreraModel }) => {
   const rCarrerasRouter = Router();

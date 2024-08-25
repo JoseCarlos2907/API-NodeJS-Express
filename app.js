@@ -11,6 +11,8 @@ import { createEscuderiaRouter } from "./routes/escuderias.js";
 import { createLibreRouter } from "./routes/libres.js";
 import { createPaisRouter } from "./routes/paises.js";
 import { createRCarrerasRouter } from "./routes/resultadosCarreras.js";
+import { createRClasificacionesRouter } from "./routes/resultadosClasificaciones.js";
+import { createRLibresRouter } from "./routes/resultadosLibres.js";
 
 // Models
 import { UsuarioModel } from "./models/usuarios.js";
@@ -22,6 +24,8 @@ import { EscuderiaModel } from "./models/escuderias.js";
 import { LibreModel } from "./models/libres.js";
 import { PaisModel } from "./models/paises.js";
 import { ResultadoCarreraModel } from "./models/ResultadosCarreras.js";
+import { ResultadoClasificacionModel } from "./models/resultadosClasificaciones.js";
+import { ResultadoLibreModel } from "./models/resultadosLibres.js";
 
 const app = express();
 
@@ -29,7 +33,7 @@ app.disable("x-powered-by");
 app.use(json());
 app.use(corsMiddleware());
 
-// Aqui van los app.use() de los routers de los modelos, de momento solo el de usuarios para probarlo
+// Aqui van los app.use() de los routers de los modelos
 app.use("/carreras", createCarreraRouter({ carreraModel: CarreraModel }));
 app.use("/circuitos", createCircuitoRouter({ circuitoModel: CircuitoModel }));
 app.use(
@@ -46,6 +50,18 @@ app.use("/paises", createPaisRouter({ paisModel: PaisModel }));
 app.use(
   "/resultados-carreras",
   createRCarrerasRouter({ resultadoCarreraModel: ResultadoCarreraModel })
+);
+app.use(
+  "/resultados-clasificaciones",
+  createRClasificacionesRouter({
+    resultadoClasificacionModel: ResultadoClasificacionModel,
+  })
+);
+app.use(
+  "/resultados-libres",
+  createRLibresRouter({
+    resultadoLibreModel: ResultadoLibreModel,
+  })
 );
 app.use("/usuarios", createUsuarioRouter({ usuarioModel: UsuarioModel }));
 

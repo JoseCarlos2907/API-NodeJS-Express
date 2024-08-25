@@ -16,11 +16,13 @@ export class ResultadoCarreraController {
 
   getByIdPiloto = async (req, res) => {
     const { idCarrera, idPiloto } = req.param;
-    const resultados = await this.resultadoCarreraModel.getByIdPiloto({
+    const resultado = await this.resultadoCarreraModel.getByIdPiloto({
       idCarrera,
       idPiloto,
     });
-    return res.json(resultados);
+
+    if (resultado) return res.json(resultado);
+    return res.status(404).json({ msg: "Resultado de carrera no encontrado" });
   };
 
   getTopPilotos = async (req, res) => {

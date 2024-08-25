@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { PaisController } from "../controllers/paises";
+import { PaisController } from "../controllers/paises.js";
 
 export const createPaisRouter = ({ paisModel }) => {
   const paisesRouter = Router();
