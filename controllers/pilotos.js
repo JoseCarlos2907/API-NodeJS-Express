@@ -1,3 +1,5 @@
+import {validatePartialPiloto, validatePiloto} from '../schemas/pilotos.js'
+
 export class PilotoController {
   constructor({ pilotoModel }) {
     this.pilotoModel = pilotoModel;
