@@ -2,16 +2,16 @@ Primero hay que hacer el schema de cada entidad
 (TODOS HECHOS)
 
 Una vez teniendo el schema hacemos el modelo con la conexión de BD
-(carreras, circuitos, clasificaciones, coches, escuderias, usuarios)
+(TODOS HECHOS)
 
 Después de esto hacemos el controller
-(carreras, circuitos, clasificaciones, coches, escuderias, usuarios)
+(TODOS HECHOS)
 
 Cuando tengamos el controller completo, hacemos el routes de la entidad
-(carreras, circuitos, clasificaciones, coches, escuderias, usuarios)
+(TODOS HECHOS)
 
 Y finalmente hacemos un app.use() con el routes hecho anteriormente en el app.js
-(carreras, circuitos, clasificaciones, coches, escuderias, usuarios)
+(TODOS HECHOS)
 
 Hacer las peticiones al final
 (usuarios)
