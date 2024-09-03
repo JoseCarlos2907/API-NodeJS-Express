@@ -5,7 +5,7 @@ export class BusquedaController {
 
   buscar = async (req, res) => {
     const { cadena } = req.body;
-    const resultadoBusqueda = this.busquedaModel.buscar({ cadena });
+    const resultadoBusqueda = await this.busquedaModel.buscar({ cadena: cadena });
     return res.json(resultadoBusqueda);
   };
 }

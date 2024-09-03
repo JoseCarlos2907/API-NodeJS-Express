@@ -9,7 +9,7 @@ export class BusquedaModel {
     let resultadosBusqueda = [];
 
     const [pilotos] = await connection.query(
-      `SELECT idPiloto, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellido AS apellido, FechaNac AS fechaNac, Peso AS peso, Altura AS altura, Numero AS numero, Puntuacion AS puntuacion FROM Pilotos WHERE Nombre LIKE '%${cadena}%' OR Apellido LIKE '%${cadena}%' ORDER BY Nombre ASC, Apellido ASC LIMIT 5`
+      `SELECT idPiloto, ImgPerfil AS imgPerfil, Nombre AS nombre, Apellido AS apellido, FechaNac AS fechaNac, Peso AS peso, Altura AS altura, Numero AS numero, Puntuacion AS puntuacion FROM Pilotos WHERE Nombre LIKE '%${cadena}%' OR Apellido LIKE '%${cadena}%' ORDER BY Nombre ASC, Apellido ASC LIMIT 5;`
     );
 
     pilotos.forEach((piloto) => {
